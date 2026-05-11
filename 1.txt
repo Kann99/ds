@@ -1,0 +1,127 @@
+import pandas as pd
+
+df = pd.read_csv("iris.csv.txt")
+
+print("----- HEAD -----")
+print(df.head())
+
+print("\n----- TAIL -----")
+print(df.tail())
+
+print("\n----- SHAPE -----")
+print(df.shape)
+
+print("\n----- NULL VALUES COUNT -----")
+print(df.isnull().sum())
+
+print("\n----- NULL VALUES (True/False) -----")
+print(df.isnull())
+
+print("\n----- DESCRIPTION -----")
+print(df.describe())
+
+print("\n----- INFO -----")
+df.info()
+
+print("\n----- COLUMNS -----")
+print(df.columns)
+
+print("\n----- INDEX -----")
+print(df.index)
+
+print("\n----- DATA TYPES -----")
+print(df.dtypes)
+
+print("\n--------normalization of data--------------")
+df['sepal_length'] = (
+    df['sepal_length'] - df['sepal_length'].min()
+) / (
+    df['sepal_length'].max() - df['sepal_length'].min()
+)
+
+print(df.head())
+print("\n------------DATA CONVERSION------------- ")
+df = pd.get_dummies(df, columns=['species'])
+df.head()
+
+# import pandas as pd
+
+# Imports pandas library for data handling.
+
+# df = pd.read_csv("iris.csv.txt")
+
+# Reads the dataset file and stores it in DataFrame df.
+
+# print(df.head())
+
+# Displays first 5 rows of dataset.
+
+# print(df.tail())
+
+# Displays last 5 rows of dataset.
+
+# print(df.shape)
+
+# Displays dataset dimensions:
+# (rows, columns)
+
+# print(df.isnull().sum())
+
+# Checks total missing values in each column.
+
+# print(df.isnull())
+
+# Displays missing values as:
+
+# True → missing
+# False → not missing
+# print(df.describe())
+
+# Shows statistical summary:
+
+# mean
+# min
+# max
+# std
+# quartiles
+# df.info()
+
+# Displays dataset information:
+
+# rows
+# columns
+# datatypes
+# memory usage
+# print(df.columns)
+
+# Displays all column names.
+
+# print(df.index)
+
+# Displays row indexes.
+
+# print(df.dtypes)
+
+# Displays datatype of each column.
+
+# df['sepal_length'] = (
+#     df['sepal_length'] - df['sepal_length'].min()
+# ) / (
+#     df['sepal_length'].max() - df['sepal_length'].min()
+# )
+
+# Performs Min-Max Normalization.
+# Converts values between 0 and 1.
+
+# df = pd.get_dummies(df, columns=['species'])
+
+# Performs One-Hot Encoding.
+# Converts categorical variable into quantitative/numeric variables.
+
+# print(df.head())
+
+# Displays updated dataset.
+
+# print(df.dtypes)
+
+# Displays updated datatypes after encoding.
