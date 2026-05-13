@@ -1,0 +1,169 @@
+import seaborn as sns
+
+import matplotlib.pyplot as plt
+
+# Load dataset
+
+df = sns.load_dataset("titanic")
+
+print("----- DATA PREVIEW -----")
+
+print(df.head())
+
+print("\n----- DATA INFO -----")
+
+print(df.info())
+
+#Count plot (Survival)
+
+sns.countplot(x="survived", data=df)
+
+plt.title("Survival Count")
+
+plt.show()
+
+# Count plot (Gender vs Survival)
+
+sns.countplot(x="sex", hue="survived", data=df)
+
+plt.title("Survival based on Gender")
+
+plt.show()
+
+# Count plot (Class vs Survival)
+
+sns.countplot(x="pclass", hue="survived", data=df)
+
+plt.title("Survival based on Passenger Class")
+
+plt.show()
+
+# Histogram of fare
+
+sns.histplot(df["fare"], bins=30, kde=True)
+
+plt.title("Fare Distribution")
+
+plt.xlabel("Fare")
+
+plt.ylabel("Count")
+
+plt.show()
+
+
+# import seaborn as sns
+# seaborn → data visualization library
+# sns → short name (alias)
+# import matplotlib.pyplot as plt
+# matplotlib → graph plotting library
+# pyplot → plotting module
+# plt → short name
+# df = sns.load_dataset("titanic")
+# load_dataset() → loads built-in dataset
+# "titanic" → Titanic passenger dataset
+# df → DataFrame variable
+# print("----- DATA PREVIEW -----")
+
+# Prints heading.
+
+# print(df.head())
+# head() → shows first 5 rows of dataset
+
+# Example columns:
+
+# Column	Meaning
+# survived	Survival status
+# pclass	Passenger class
+# sex	Gender
+# age	Passenger age
+# fare	Ticket fare
+# print("\n----- DATA INFO -----")
+
+# Prints information heading.
+
+# print(df.info())
+# info() → displays dataset information:
+# column names
+# data types
+# missing values
+# sns.countplot(x="survived", data=df)
+
+# Creates count plot for survival.
+
+# x="survived" → x-axis uses survival column
+# data=df → uses Titanic dataset
+
+# Shows:
+
+# survived people
+# non-survived people
+# plt.title("Survival Count")
+
+# Adds graph title.
+
+# plt.show()
+
+# Displays graph.
+
+# sns.countplot(x="sex", hue="survived", data=df)
+
+# Creates gender vs survival graph.
+
+# sex → male/female
+# hue="survived" → survival comparison using colors
+
+# Shows:
+
+# how many males survived
+# how many females survived
+# plt.title("Survival based on Gender")
+
+# Adds graph title.
+
+# plt.show()
+
+# Displays graph.
+
+# sns.countplot(x="pclass", hue="survived", data=df)
+
+# Creates passenger class vs survival graph.
+
+# pclass → class 1,2,3
+# hue="survived" → compares survival
+
+# Shows survival rate in each class.
+
+# plt.title("Survival based on Passenger Class")
+
+# Adds graph title.
+
+# plt.show()
+
+# Displays graph.
+
+# sns.histplot(df["fare"], bins=30, kde=True)
+
+# Creates histogram of ticket fare.
+
+# histplot() → histogram graph
+# df["fare"] → fare column
+# bins=30 → 30 intervals
+# kde=True → smooth density curve
+
+# Shows fare distribution.
+
+# plt.title("Fare Distribution")
+
+# Adds graph title.
+
+# plt.xlabel("Fare")
+
+# Labels x-axis.
+
+# plt.ylabel("Count")
+
+# Labels y-axis.
+
+# plt.show()
+
+# Displays histogram.
