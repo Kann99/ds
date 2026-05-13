@@ -1,0 +1,252 @@
+import pandas as pd
+
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import (
+    confusion_matrix,
+    accuracy_score,
+    precision_score,
+    recall_score
+)
+
+# Load dataset
+data = pd.read_csv("iris_dataset.csv")
+
+print(data.head())
+
+# Features and target
+X = data.iloc[:, :-1]   # all columns except last
+y = data.iloc[:, -1]   # last column (target)
+
+# Split dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=42
+)
+
+# Create model
+model = GaussianNB()
+
+# Train model
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+print("Predictions:", y_pred)
+
+# Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+
+print("\nConfusion Matrix:\n", cm)
+
+# Metrics
+accuracy = accuracy_score(y_test, y_pred)
+
+precision = precision_score(
+    y_test, y_pred, average='macro'
+)
+
+recall = recall_score(
+    y_test, y_pred, average='macro'
+)
+
+error_rate = 1 - accuracy
+
+# Output
+print("\nAccuracy:", accuracy)
+
+print("Error Rate:", error_rate)
+
+print("Precision:", precision)
+
+print("Recall:", recall)
+
+
+
+# import pandas as pd
+
+
+# import → bring library into program
+
+
+# pandas → data handling library
+
+
+# pd → short name (alias)
+
+
+
+# from sklearn.model_selection import train_test_split
+
+
+# from → import specific item
+
+
+# sklearn → machine learning library
+
+
+# model_selection → module for data splitting
+
+
+# train_test_split → function to divide data
+
+
+
+# from sklearn.naive_bayes import GaussianNB
+
+
+# naive_bayes → probability-based algorithm
+
+
+# GaussianNB → Gaussian Naive Bayes model
+
+
+# Bayes Formula:
+# P(A∣B)=P(B∣A)P(A)P(B)P(A|B)=\frac{P(B|A)P(A)}{P(B)}P(A∣B)=P(B)P(B∣A)P(A)​P(A)P(A)P(A)P(B∣A)P(B\mid A)P(B∣A)P(B∣¬A)P(B\mid \neg A)P(B∣¬A)P(A∣B)=P(B∣A)P(A)P(B)≈0.68,  P(B)≈0.25P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)}\approx 0.68,\; P(B)\approx 0.25P(A∣B)=P(B)P(B∣A)P(A)​≈0.68,P(B)≈0.25P(B)=0.25P(B|A)P(A)=0.17P(A|B)~0.68Posterior = useful evidence / total evidence
+
+# data = pd.read_csv("iris.csv")
+
+
+# data → variable storing dataset
+
+
+# read_csv() → reads CSV file
+
+
+# "iris.csv" → dataset file name
+
+
+
+# print(data.head())
+
+
+# print() → displays output
+
+
+# head() → shows first 5 rows
+
+
+
+# X = data.iloc[:, :-1]
+
+
+# X → input features
+
+
+# iloc → index location selection
+
+
+# : → all rows
+
+
+# :-1 → all columns except last
+
+
+
+# y = data.iloc[:, -1]
+
+
+# y → target/output
+
+
+# -1 → last column
+
+
+
+# train_test_split(X, y, test_size=0.25, random_state=42)
+
+
+# X → inputs
+
+
+# y → outputs
+
+
+# test_size=0.25 → 25% testing data
+
+
+# random_state=42 → same random split every run
+
+
+
+# model = GaussianNB()
+
+
+# model → classifier object
+
+
+# GaussianNB() → Naive Bayes classifier
+
+
+
+# model.fit(X_train, y_train)
+
+
+# fit() → train model
+
+
+# X_train → training inputs
+
+
+# y_train → training outputs
+
+
+
+# y_pred = model.predict(X_test)
+
+
+# predict() → predicts outputs
+
+
+# y_pred → predicted values
+
+
+
+# cm = confusion_matrix(y_test, y_pred)
+
+
+# cm → confusion matrix
+
+
+# y_test → actual values
+
+
+# y_pred → predicted values
+
+
+
+# accuracy = accuracy_score(y_test, y_pred)
+
+
+# accuracy_score() → calculates accuracy
+
+
+# Accuracy=Correct PredictionsTotal PredictionsAccuracy=\frac{Correct\ Predictions}{Total\ Predictions}Accuracy=Total PredictionsCorrect Predictions​
+
+# precision_score(y_test, y_pred, average='macro')
+
+
+# precision → correct positive predictions
+
+
+# macro → average for all classes
+
+
+# Precision=TPTP+FPPrecision=\frac{TP}{TP+FP}Precision=TP+FPTP​
+
+# recall_score(y_test, y_pred, average='macro')
+
+
+# recall → correctly identified positives
+
+
+# Recall=TPTP+FNRecall=\frac{TP}{TP+FN}Recall=TP+FNTP​
+
+# error_rate = 1 - accuracy
+
+
+# error_rate → wrong prediction percentage
+
+
+# 1 - accuracy → error calculation
+
