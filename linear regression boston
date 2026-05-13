@@ -1,0 +1,158 @@
+import pandas as pd 
+import numpy as np
+from sklearn.model_selection import train_test_split 
+from sklearn.linear_model import LinearRegression 
+from sklearn.metrics import mean_squared_error,r2_score
+
+df=pd.read_csv("BostonHousing.txt")
+
+print("data preview")
+print(df.head())
+df=df.fillna(df.mean(numeric_only=True))
+
+x=df.drop("medv",axis=1)
+y=df["medv"]
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
+
+model=LinearRegression()
+model.fit(x_train,y_train)
+
+y_pred=model.predict(x_test)
+
+print("result")
+print("MSE",mean_squared_error(y_test,y_pred))
+print("r2_score",r2_score(y_test,y_pred))
+
+import matplotlib.pyplot as plt
+plt.scatter(y_test,y_pred)
+plt.xlabel("actual price")
+plt.ylabel("predicted price")
+plt.title("actual vs predicted prices")
+plt.plot(y_test,y_test)
+plt.show()
+
+# import pandas as pd
+
+# Imports Pandas library for handling datasets.
+
+# import numpy as np
+
+# Imports NumPy library for numerical operations.
+
+# from sklearn.model_selection import train_test_split
+
+# Imports function to split data into training and testing sets.
+
+# from sklearn.linear_model import LinearRegression
+
+# Imports Linear Regression model.
+
+# from sklearn.metrics import mean_squared_error, r2_score
+
+# Imports evaluation metrics:
+
+# MSE → error calculation
+# R² → accuracy score
+# import matplotlib.pyplot as plt
+
+# Imports Matplotlib for graph plotting.
+
+# df = pd.read_csv("BostonHousing.txt")
+
+# Loads Boston Housing dataset into DataFrame.
+
+# print("Data Preview")
+
+# Prints heading text.
+
+# print(df.head())
+
+# Displays first 5 rows of dataset.
+
+# df = df.fillna(df.mean(numeric_only=True))
+
+# Fills missing numeric values with column mean.
+
+# Mean Formula:
+#x/n
+# x = df.drop("medv", axis=1)
+
+# Selects input features by removing target column medv.
+
+# y = df["medv"]
+
+# Stores target/output values in y.
+
+# x_train, x_test, y_train, y_test = train_test_split(
+#     x, y, test_size=0.2, random_state=0
+# )
+
+# Splits dataset:
+
+# 80% training data
+# 20% testing data
+
+# random_state=0
+# → gives same split every time.
+
+# model = LinearRegression()
+
+# Creates Linear Regression model object.
+
+# Linear Regression Equation:
+
+# y=mx+c
+
+# y-intercept
+# x-intercept
+# model.fit(x_train, y_train)
+
+# Trains model using training data.
+
+# y_pred = model.predict(x_test)
+
+# Predicts house prices for test data.
+
+# print("Results")
+
+# Prints result heading.
+
+# print("MSE:", mean_squared_error(y_test, y_pred))
+
+# Calculates Mean Squared Error.
+
+# Lower MSE = better model.
+
+
+# print("R2 Score:", r2_score(y_test, y_pred))
+
+# Calculates R² score.
+
+# Higher R² = better accuracy.
+
+
+
+# plt.scatter(y_test, y_pred)
+
+# Creates scatter plot of actual vs predicted prices.
+
+# plt.xlabel("Actual Price")
+
+# Labels x-axis.
+
+# plt.ylabel("Predicted Price")
+
+# Labels y-axis.
+
+# plt.title("Actual vs Predicted Prices")
+
+# Adds graph title.
+
+# plt.plot(y_test, y_test)
+
+# Draws ideal prediction line.
+
+# plt.show()
+
+# Displays the graph.
