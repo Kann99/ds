@@ -1,0 +1,189 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load dataset
+df = sns.load_dataset("iris")
+
+print("========== DATA PREVIEW ==========")
+
+print(df.head())
+
+print("\n========== FEATURES & DATA TYPES ==========")
+
+print(df.dtypes)
+
+# HISTOGRAMS
+print("\n========== HISTOGRAMS ==========")
+
+df.hist(figsize=(10, 8))
+
+plt.suptitle("Histograms of Iris Features")
+
+plt.show()
+
+# BOXPLOTS
+print("\n========== BOXPLOTS ==========")
+
+features = df.columns[:-1]   # exclude species column
+
+for col in features:
+
+    plt.figure()
+
+    sns.boxplot(x="species", y=col, data=df)
+
+    plt.title(f"Boxplot of {col}")
+
+    plt.show()
+
+# BASIC OBSERVATIONS
+print("\n========== OBSERVATIONS ==========")
+
+print("1. Sepal features show overlap between species.")
+
+print("2. Petal features clearly separate species.")
+
+print("3. Some outliers are present in sepal_width.")
+
+print("4. Petal length and width are most important features.")
+
+# import pandas as pd
+
+# Imports Pandas library for handling datasets.
+
+# import seaborn as sns
+
+# Imports Seaborn library for visualization.
+
+# import matplotlib.pyplot as plt
+
+# Imports Matplotlib plotting module.
+
+# plt → short name for plotting graphs
+# df = sns.load_dataset("iris")
+
+# Loads Iris dataset into DataFrame df.
+
+# Dataset contains:
+
+# sepal length
+# sepal width
+# petal length
+# petal width
+# species
+# print("========== DATA PREVIEW ==========")
+
+# Prints heading.
+
+# print(df.head())
+
+# Displays first 5 rows of dataset.
+
+# head() → preview function
+# print("\n========== FEATURES & DATA TYPES ==========")
+
+# Prints heading for feature information.
+
+# print(df.dtypes)
+
+# Displays data types of columns.
+
+# Example:
+
+# float64 → decimal numbers
+# object → text/string
+# print("\n========== HISTOGRAMS ==========")
+
+# Prints histogram section heading.
+
+# df.hist(figsize=(10, 8))
+
+# Creates histograms for numeric columns.
+
+# hist() → histogram graph
+# figsize=(10,8) → graph size
+
+# Histogram shows data distribution.
+
+# plt.suptitle("Histograms of Iris Features")
+
+# Adds overall title to histograms.
+
+# plt.show()
+
+# Displays histogram graphs.
+
+# print("\n========== BOXPLOTS ==========")
+
+# Prints boxplot section heading.
+
+# features = df.columns[:-1]
+
+# Selects all columns except last column.
+
+# columns → all column names
+# [:-1] → exclude last column (species)
+
+# Selected features:
+
+# sepal_length
+# sepal_width
+# petal_length
+# petal_width
+# for col in features:
+
+# Loops through each feature column.
+
+# col stores current column name.
+
+# plt.figure()
+
+# Creates new graph figure.
+
+# sns.boxplot(x="species", y=col, data=df)
+
+# Creates boxplot.
+
+# Parameters:
+
+# x="species" → species on x-axis
+# y=col → feature on y-axis
+# data=df → uses Iris dataset
+
+# Compares feature values across species.
+
+# plt.title(f"Boxplot of {col}")
+
+# Adds title dynamically.
+
+# Example:
+
+# Boxplot of petal_length
+# plt.show()
+
+# Displays boxplot.
+
+# print("\n========== OBSERVATIONS ==========")
+
+# Prints observations heading.
+
+# print("1. Sepal features show overlap between species.")
+
+# Observation:
+# Sepal values are similar for some species.
+
+# print("2. Petal features clearly separate species.")
+
+# Observation:
+# Petal measurements distinguish species clearly.
+
+# print("3. Some outliers are present in sepal_width.")
+
+# Observation:
+# Some unusual sepal width values exist.
+
+# print("4. Petal length and width are most important features.")
+
+# Observation:
+# Petal features are best for classification.
