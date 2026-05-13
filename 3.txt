@@ -1,0 +1,156 @@
+
+import pandas as pd
+
+#Load dataset
+
+df= pd.read_csv("iris_dataset.csv")
+
+#Create categorical groups based on sepal length
+
+df['sepal_group'] = pd.cut(df['sepal_length'], bins=3, labels=["Low", "Medium", "High"])
+
+#Group by categorical variable and calculate statistics
+
+grouped = df.groupby('sepal_group')['petal_length']
+
+print("Mean:\n", grouped.mean())
+
+print("\nMedian:\n", grouped.median())
+
+print("\nMinimum:\n", grouped.min())
+
+print("\nMaximum:\n", grouped.max())
+
+print("\nStandard Deviation:\n", grouped.std())
+
+# Create numeric lists for each category
+low_list = df[df['sepal_group']=="Low"]['petal_length'].tolist()
+print("\nLow Group List:\n", low_list)
+
+
+
+
+# import pandas as pd
+
+# Imports Pandas library.
+
+# df = pd.read_csv("iris_dataset.csv")
+
+# Loads Iris dataset into DataFrame.
+
+# df['sepal_group'] = pd.cut(df['sepal_length'], bins=3,
+# labels=["Low", "Medium", "High"])
+
+# Divides sepal length into 3 categories:
+# Low, Medium, High.
+
+# grouped = df.groupby('sepal_group')['petal_length']
+
+# Groups petal length data based on sepal groups.
+
+# print(grouped.mean())
+
+# Calculates average.
+
+# Mean=
+# n
+# ∑x
+# 	​
+
+
+# print(grouped.median())
+
+# Finds middle value.
+
+# print(grouped.min())
+
+# Finds minimum value.
+
+# print(grouped.max())
+
+# Finds maximum value.
+
+# print(grouped.std())
+
+# Calculates standard deviation.
+
+# σ=
+# N
+# ∑(x−μ)
+# 2
+
+# low_list = df[df['sepal_group']=="Low"]['petal_length'].tolist()
+
+# Creates list of petal lengths from Low group.
+
+# print(low_list)
+
+# Displays the list.
+
+--------------------------------
+
+import pandas as pd
+
+df = pd.read_csv("iris.csv.txt")
+
+grouped = df.groupby('species')
+
+for name, group in grouped:
+
+    print("\n----- Species:", name, "-----")
+
+    print("\nMean:")
+    print(group.mean(numeric_only=True))
+
+    print("\nStandard Deviation:")
+    print(group.std(numeric_only=True))
+
+    print("\nPercentiles:")
+    print(group.describe())
+
+# import pandas as pd
+
+# Imports Pandas library.
+
+# df = pd.read_csv("iris.csv.txt")
+
+# Loads Iris dataset into DataFrame.
+
+# grouped = df.groupby('species')
+
+# Groups data based on species.
+
+# for name, group in grouped:
+
+# Loops through each species group.
+
+# print("\n----- Species:", name, "-----")
+
+# Displays species name.
+
+# print(group.mean(numeric_only=True))
+
+# Calculates mean of numeric columns.
+
+# Mean=
+# n
+# ∑x
+# 	​
+
+
+# print(group.std(numeric_only=True))
+
+# Calculates standard deviation.
+
+# σ=
+# N
+# ∑(x−μ)
+# 2
+# 	​
+
+# 	​
+
+
+# print(group.describe())
+
+
