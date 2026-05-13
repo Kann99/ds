@@ -1,0 +1,147 @@
+import matplotlib.pyplot as plt
+
+#
+
+import seaborn as sns
+
+
+
+df = sns.load_dataset("titanic")
+
+print("========== DATA PREVIEW ==========")
+
+print(df.head())
+
+print("\n========== DATA INFO ==========")
+
+print(df.info())
+
+#
+
+
+print("\n========== BOXPLOT ==========")
+
+sns.boxplot(x="sex", y="age", hue="survived", data=df)
+
+plt.title("Age Distribution by Gender and Survival")
+
+plt.xlabel("Gender")
+
+plt.ylabel("Age")
+
+plt.show()
+
+#
+
+
+
+print("\n========== OBSERVATIONS ==========")
+
+print("1. Females have higher survival rate than males.")
+
+print("2. Children (lower age) have higher survival chances.")
+
+print("3. Male age distribution is wider than females.")
+
+print("4. Older passengers have lower survival rate.")
+
+print("5. Some outliers are present in age.")
+
+
+
+# import matplotlib.pyplot as plt
+# matplotlib → graph plotting library
+# pyplot → plotting module
+# plt → short name
+# import seaborn as sns
+# seaborn → visualization library
+# sns → alias name
+# df = sns.load_dataset("titanic")
+# load_dataset() → loads built-in dataset
+# "titanic" → Titanic passenger dataset
+# df → DataFrame variable
+# print("========== DATA PREVIEW ==========")
+
+# Prints heading.
+
+# print(df.head())
+# head() → displays first 5 rows
+
+# Shows:
+
+# age
+# gender
+# class
+# survival status
+# print("\n========== DATA INFO ==========")
+
+# Prints heading for dataset information.
+
+# print(df.info())
+# info() → shows:
+# column names
+# data types
+# missing values
+# print("\n========== BOXPLOT ==========")
+
+# Prints boxplot heading.
+
+# sns.boxplot(x="sex", y="age", hue="survived", data=df)
+
+# Creates boxplot.
+
+# Parameters:
+# x="sex" → gender on x-axis
+# y="age" → age on y-axis
+# hue="survived" → survival comparison using colors
+# data=df → Titanic dataset
+
+# Shows:
+
+# age distribution
+# survival comparison
+# outliers
+# plt.title("Age Distribution by Gender and Survival")
+
+# Adds graph title.
+
+# plt.xlabel("Gender")
+
+# Labels x-axis.
+
+# plt.ylabel("Age")
+
+# Labels y-axis.
+
+# plt.show()
+
+# Displays boxplot.
+
+# print("\n========== OBSERVATIONS ==========")
+
+# Prints observation heading.
+
+# print("1. Females have higher survival rate than males.")
+
+# Observation:
+# More females survived.
+
+# print("2. Children (lower age) have higher survival chances.")
+
+# Observation:
+# Children survived more often.
+
+# print("3. Male age distribution is wider than females.")
+
+# Observation:
+# Male ages are more spread out.
+
+# print("4. Older passengers have lower survival rate.")
+
+# Observation:
+# Older people survived less.
+
+# print("5. Some outliers are present in age.")
+
+# Observation:
+# Some unusual/extreme age values exist.
