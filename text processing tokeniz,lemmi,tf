@@ -1,0 +1,363 @@
+import nltk
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk import pos_tag
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# PART 1: TEXT PREPROCESSING
+
+text = "Text analytics is the process of analyzing text data to extract useful information."
+
+print("========== TEXT PREPROCESSING ==========\n")
+
+print("----- ORIGINAL TEXT -----")
+print(text)
+
+# Tokenization
+tokens = word_tokenize(text)
+
+print("\n----- TOKENS -----")
+print(tokens)
+
+# POS Tagging
+pos = pos_tag(tokens)
+
+print("\n----- POS TAGS -----")
+
+for word, tag in pos:
+    print(f"{word:<12} -> {tag}")
+
+# Stopwords Removal
+stop_words = set(stopwords.words('english'))
+
+filtered = [word for word in tokens if word.lower() not in stop_words]
+
+print("\n----- AFTER STOPWORD REMOVAL -----")
+print(filtered)
+
+# Stemming
+stemmer = PorterStemmer()
+
+stemmed = [stemmer.stem(word) for word in filtered]
+
+print("\n----- STEMMED WORDS -----")
+print(stemmed)
+
+# Lemmatization
+lemmatizer = WordNetLemmatizer()
+
+lemmatized = [lemmatizer.lemmatize(word) for word in filtered]
+
+print("\n----- LEMMATIZED WORDS -----")
+print(lemmatized)
+
+# PART 2: TF-IDF
+
+documents = [
+    "Text analytics is useful",
+    "Text data analysis is important",
+    "Analytics helps extract information"
+]
+
+print("\n\n========== TF-IDF REPRESENTATION ==========\n")
+
+print("----- DOCUMENTS -----")
+
+for i, doc in enumerate(documents, 1):
+    print(f"Doc {i}: {doc}")
+
+# TF-IDF Vectorization
+vectorizer = TfidfVectorizer()
+
+tfidf_matrix = vectorizer.fit_transform(documents)
+
+features = vectorizer.get_feature_names_out()
+
+matrix = tfidf_matrix.toarray()
+
+print("\n----- FEATURE NAMES -----")
+print(features)
+
+print("\n----- TF-IDF MATRIX -----")
+print("Rows = Documents, Columns = Words\n")
+
+for i in range(len(matrix)):
+
+    print(f"Doc {i+1}:")
+
+    for j in range(len(features)):
+        print(f"{features[j]:<12}: {matrix[i][j]:.3f}")
+
+    print()
+
+# import nltk
+# import → Used to include library.
+# nltk → NLTK library for Natural Language Processing.
+# nltk.download('punkt')
+# download() → Downloads required dataset.
+# 'punkt' → Used for tokenization.
+# nltk.download('stopwords')
+# Downloads stopword dataset.
+
+# Stopwords examples:
+
+# is
+# the
+# and
+# nltk.download('averaged_perceptron_tagger')
+# Downloads POS tagging model.
+
+# Used for:
+
+# noun
+# verb
+# adjective identification
+# nltk.download('wordnet')
+# Downloads WordNet dictionary.
+# Needed for lemmatization.
+# nltk.download('omw-1.4')
+# Downloads multilingual WordNet data.
+# Required internally for lemmatization.
+# Import Statements
+# from nltk.tokenize import word_tokenize
+# Explanation
+# from → Import specific function.
+# nltk.tokenize → Tokenization module.
+# word_tokenize → Splits sentence into words.
+# from nltk.corpus import stopwords
+# corpus → Collection of text datasets.
+# stopwords → Common unnecessary words.
+# from nltk.stem import PorterStemmer, WordNetLemmatizer
+# Explanation
+# stem → Module for stemming.
+# PorterStemmer → Stemming algorithm.
+# WordNetLemmatizer → Lemmatization tool.
+# from nltk import pos_tag
+# pos_tag → Part-of-speech tagging function.
+# from sklearn.feature_extraction.text import TfidfVectorizer
+# Explanation
+# sklearn → Scikit-learn library.
+# feature_extraction.text → Text feature tools.
+# TfidfVectorizer → Converts text into TF-IDF values.
+# PART 1: TEXT PREPROCESSING
+# text = "Text analytics is the process of analyzing text data to extract useful information."
+# Explanation
+# text → Variable storing sentence.
+# = → Assignment operator.
+# print("========== TEXT PREPROCESSING ==========\n")
+
+# Prints heading.
+
+# \n → New line.
+# print("----- ORIGINAL TEXT -----")
+
+# Prints subheading.
+
+# print(text)
+
+# Displays original sentence.
+
+# Tokenization
+# tokens = word_tokenize(text)
+# Word-by-Word
+# tokens → Variable storing words.
+# = → Assignment.
+# word_tokenize() → Splits sentence into tokens.
+# text → Input sentence.
+
+# Example output:
+
+# ['Text', 'analytics', 'is', 'the', ...]
+# print("\n----- TOKENS -----")
+
+# Prints heading.
+
+# print(tokens)
+
+# Displays token list.
+
+# POS Tagging
+# pos = pos_tag(tokens)
+# Explanation
+# pos → Variable storing POS tags.
+# pos_tag() → Assigns grammar tags.
+
+# Example:
+
+# NN → Noun
+# VB → Verb
+# print("\n----- POS TAGS -----")
+
+# Prints heading.
+
+# for word, tag in pos:
+# Explanation
+# for → Loop.
+# word → Current word.
+# tag → POS tag.
+# in → Iteration operator.
+# pos → POS tagged list.
+# print(f"{word:<12} -> {tag}")
+# Explanation
+# f"" → Formatted string.
+# {word:<12} → Left-align word with width 12.
+# -> → Arrow symbol.
+# {tag} → POS tag.
+# Stopword Removal
+# stop_words = set(stopwords.words('english'))
+# Explanation
+# stop_words → Variable.
+# set() → Creates unique collection.
+# stopwords.words('english') → English stopword list.
+# filtered = [word for word in tokens if word.lower() not in stop_words]
+# Word-by-Word
+# filtered → Variable storing cleaned words.
+# [ ] → List comprehension.
+# word for word in tokens → Loop through tokens.
+# if → Condition.
+# word.lower() → Convert to lowercase.
+# not in stop_words → Remove stopwords.
+# print("\n----- AFTER STOPWORD REMOVAL -----")
+
+# Prints heading.
+
+# print(filtered)
+
+# Displays filtered words.
+
+# Stemming
+# stemmer = PorterStemmer()
+
+# Creates stemmer object.
+
+# stemmed = [stemmer.stem(word) for word in filtered]
+# Explanation
+# stem() → Converts word to root form.
+
+# Example:
+
+# analyzing → analyz
+# print("\n----- STEMMED WORDS -----")
+
+# Prints heading.
+
+# print(stemmed)
+
+# Displays stemmed words.
+
+# Lemmatization
+# lemmatizer = WordNetLemmatizer()
+
+# Creates lemmatizer object.
+
+# lemmatized = [lemmatizer.lemmatize(word) for word in filtered]
+# Explanation
+# lemmatize() → Converts to meaningful dictionary root.
+
+# Example:
+
+# running → run
+# print("\n----- LEMMATIZED WORDS -----")
+
+# Prints heading.
+
+# print(lemmatized)
+
+# Displays lemmatized words.
+
+# PART 2: TF-IDF
+# documents = [
+
+# Creates list of documents.
+
+# "Text analytics is useful",
+# "Text data analysis is important",
+# "Analytics helps extract information"
+
+# Three sample documents.
+
+# ]
+
+# Ends list.
+
+# print("\n\n========== TF-IDF REPRESENTATION ==========\n")
+
+# Prints heading.
+
+# print("----- DOCUMENTS -----")
+
+# Prints subheading.
+
+# for i, doc in enumerate(documents, 1):
+# Explanation
+# enumerate() → Adds numbering.
+# documents → List.
+# 1 → Start numbering from 1.
+# print(f"Doc {i}: {doc}")
+
+# Prints document number and text.
+
+# TF-IDF Vectorization
+# vectorizer = TfidfVectorizer()
+
+# Creates TF-IDF object.
+
+# tfidf_matrix = vectorizer.fit_transform(documents)
+# Explanation
+# fit_transform() →
+# Learns vocabulary
+# Converts text to TF-IDF matrix
+# features = vectorizer.get_feature_names_out()
+
+# Gets all unique words.
+
+# matrix = tfidf_matrix.toarray()
+
+# Converts sparse matrix into normal array.
+
+# print("\n----- FEATURE NAMES -----")
+
+# Prints heading.
+
+# print(features)
+
+# Displays feature words.
+
+# print("\n----- TF-IDF MATRIX -----")
+
+# Prints heading.
+
+# print("Rows = Documents, Columns = Words\n")
+
+# Explains matrix format.
+
+# for i in range(len(matrix)):
+# Explanation
+# range() → Generates sequence.
+# len(matrix) → Number of documents.
+# print(f"Doc {i+1}:")
+
+# Prints document number.
+
+# for j in range(len(features)):
+
+# Loops through feature words.
+
+# print(f"{features[j]:<12}: {matrix[i][j]:.3f}")
+# Explanation
+# {features[j]} → Feature word.
+# :<12 → Left alignment.
+# {matrix[i][j]} → TF-IDF value.
+# :.3f → 3 decimal places.
+# print()
+
+# Adds blank line between documents.
